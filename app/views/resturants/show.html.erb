@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @resturant.name %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @resturant.genre %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @resturant.rating %>
+</p>
+
+<p>
+  <strong>tenbis:</strong>
+  <%= @resturant.tenbis %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @resturant.address %>
+</p>
+
+<p>
+  <strong>Max delivery time:</strong>
+  <%= @resturant.max_delivery_time %>
+</p>
+
+<%= link_to 'Edit', edit_resturant_path(@resturant) %> |
+<%= link_to 'Back', resturants_path %>
