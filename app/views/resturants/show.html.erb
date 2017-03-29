@@ -16,7 +16,7 @@
 </p>
 
 <p>
-  <strong>tenbis:</strong>
+  <strong>Tenbis:</strong>
   <%= @resturant.tenbis %>
 </p>
 
@@ -27,7 +27,7 @@
 
 <p>
   <strong>Max delivery time:</strong>
-  <%= @resturant.max_delivery_time %>
+  <%= @resturant.max_delivery_time.strftime('%H:%M') unless @resturant.max_delivery_time.blank? %>
 </p>
 
 <%= link_to 'Edit', edit_resturant_path(@resturant) %> |

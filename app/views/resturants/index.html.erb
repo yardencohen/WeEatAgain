@@ -1,37 +1,97 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Resturants</h1>
+<div class="main-area">
+  <div class="filters">This is where the filters will be
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Genre</th>
-      <th>Rating</th>
-      <th>tenbis</th>
-      <th>Address</th>
-      <th>Max delivery time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  
 
-  <tbody>
-    <% @resturants.each do |resturant| %>
+    <table>
+      <thead>
+        <th>Accepts 10bis:</th>
+        <th>Genre:</th>
+        <th>Rating:</th>
+      </thead>
       <tr>
-        <td><%= resturant.name %></td>
-        <td><%= resturant.genre %></td>
-        <td><%= resturant.rating %></td>
-        <td><%= resturant.tenbis %></td>
-        <td><%= resturant.address %></td>
-        <td><%= resturant.max_delivery_time %></td>
-        <td><%= link_to 'Show', resturant %></td>
-        <td><%= link_to 'Edit', edit_resturant_path(resturant) %></td>
-        <td><%= link_to 'Destroy', resturant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <input type="checkbox" name="tenbis-filter" value="accepts-tenbis">
+        </td>
+        <td>
+          <select>
+            <% @resturants.each do |resturant| %>
+              <% title = resturant.genre %>
+              <option value=<%= title %> > <%=title %> </option> 
+            <% end %>
+          </select>
+        </td>
+        <td>
+          <select>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </td>
       </tr>
+    </table>
+  </div>
+  <br><br><br><br><br>
+  <br>
+  <div class="row2">
+  <div class="google-map">That's where google map will be</div>
+  <table class="resturant-list">
+    <col class="cuisine-icon"/>
+    <col />
+    <% @resturants.each do |resturant| %>
+    <tr class="resturant-item">
+    <td><%= image_tag resturant.get_cuisine_icon %></td>
+    <td>
+      <a href=<%=resturant_path(resturant)%>>
+      <table>
+        <tr>
+          <td>
+            <div class="subtitle">
+              <%= resturant.name %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="cuisine">
+              <%= resturant.genre %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Rating:
+            <% resturant.rating.times do %>
+              <i class="fa fa-star"></i>
+            <% end %>
+          </td>
+        </tr>
+        <% if resturant.tenbis %>
+          <tr>
+            <td>
+              <div class="tenbis">
+                <%= image_tag "10bis.jpg" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>
+            <%= link_to 'Edit', edit_resturant_path(resturant) %>
+          </td>
+        </tr>
+      </table>
+      </a>
+    </td>
+    </tr>
     <% end %>
-  </tbody>
-</table>
-
+  </table>
+  </div>
+</div>
 <br>
-
+<div class="new-resturant">
+<br>
 <%= link_to 'New Resturant', new_resturant_path %>
+</div>
