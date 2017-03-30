@@ -1,11 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<div class="main-area">
-  <div class="filters">This is where the filters will be
-
-  
-
-    <table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" id="filters">
+      <table>
       <thead>
         <th>Accepts 10bis:</th>
         <th>Genre:</th>
@@ -33,65 +31,48 @@
       </tr>
     </table>
   </div>
-  <br><br><br><br><br>
-  <br>
-  <div class="row2">
-  <div class="google-map">That's where google map will be</div>
-  <table class="resturant-list">
-    <col class="cuisine-icon"/>
-    <col />
-    <% @resturants.each do |resturant| %>
-    <tr class="resturant-item">
-    <td><%= image_tag resturant.get_cuisine_icon %></td>
-    <td>
-      <a href=<%=resturant_path(resturant)%>>
-      <table>
-        <tr>
-          <td>
-            <div class="subtitle">
-              <%= resturant.name %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cuisine">
-              <%= resturant.genre %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <ul class="list-group row">
+      <% @resturants.each do |resturant| %>
+      <li class="list-group-item col-sm-4" id="cuisine-img">
+        <%= image_tag resturant.get_cuisine_icon %>
+      </li>
+      <li class="col-sm-8" id="resturant-details">
+        <a href=<%= resturant_path(resturant)%>>
+          <div class="col-sm-12">
+            <%= resturant.name %>
+          </div>
+          <div class="col-sm-12">
+            <%= resturant.genre %>
+          </div>
+          <div class="col-sm-12">
             Rating:
             <% resturant.rating.times do %>
               <i class="fa fa-star"></i>
             <% end %>
-          </td>
-        </tr>
-        <% if resturant.tenbis %>
-          <tr>
-            <td>
-              <div class="tenbis">
-                <%= image_tag "10bis.jpg" %>
-              </div>
-            </td>
-          </tr>
-        <% end %>
-        <tr>
-          <td>
+          </div>
+          <% if resturant.tenbis %>
+            <div class="col-sm-12" id="tenbis">
+              <%= image_tag "10bis.jpg" %>
+            </div>
+          <% end %>
+          <div class="col-sm-12">
             <%= link_to 'Edit', edit_resturant_path(resturant) %>
-          </td>
-        </tr>
-      </table>
-      </a>
-    </td>
-    </tr>
-    <% end %>
-  </table>
+          </div>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+    </div>
+  <div class="col-sm-4" id="google-map">
+    That's where google map will be
   </div>
 </div>
-<br>
-<div class="new-resturant">
-<br>
-<%= link_to 'New Resturant', new_resturant_path %>
+<div class="row">
+  <div class="col-sm-8" id="new-resturant">
+    <%= link_to 'New Resturant', new_resturant_path %>
+  </div>
 </div>
+</div>    
