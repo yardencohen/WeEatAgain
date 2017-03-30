@@ -16,7 +16,7 @@
         <td>
           <select>
             <% @resturants.each do |resturant| %>
-              <% title = resturant.genre %>
+              <% title = resturant.cuisine.title %>
               <option value=<%= title %> > <%=title %> </option> 
             <% end %>
           </select>
@@ -37,7 +37,7 @@
     <ul class="list-group row">
       <% @resturants.each do |resturant| %>
       <li class="list-group-item col-sm-4" id="cuisine-img">
-        <%= image_tag resturant.get_cuisine_icon %>
+        <%= image_tag resturant.cuisine.image %>
       </li>
       <li class="col-sm-8" id="resturant-details">
         <a href=<%= resturant_path(resturant)%>>
@@ -45,7 +45,7 @@
             <%= resturant.name %>
           </div>
           <div class="col-sm-12">
-            <%= resturant.genre %>
+            <%= resturant.cuisine.title %>
           </div>
           <div class="col-sm-12">
             Rating:

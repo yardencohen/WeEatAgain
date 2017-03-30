@@ -17,13 +17,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :genre %>
-    <%= f.text_field :genre %>
+    <%= f.label :cuisine_id%>
+    <%= f.collection_select :cuisine_id, Cuisine.all, :id, :title, include_blank: true %>
   </div>
 
   <div class="field">
     <%= f.label :rating %>
-    <%= f.number_field :rating, in:1...3 %>
+    <%= f.number_field :rating, in:1...4 %>
   </div>
 
   <div class="field">
