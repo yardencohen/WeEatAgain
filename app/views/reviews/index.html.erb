@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+<h1>Reviews For Resturant <%= @resturant.name %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Reviewer</th>
+      <th>Rating</th>
+      <th>Description</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.reviewer %></td>
+        <td><%= review.rating %></td>
+        <td><%= review.description %></td>
+        <td><%= link_to 'Show', resturant_review_path(@resturant, review) %></td>
+        <td><%= link_to 'Edit', edit_resturant_review_path(@resturant, review) %></td>
+        <td><%= link_to 'Destroy', [@resturant, review], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'New Review', new_resturant_review_path(@resturant) %>
+<%= link_to 'Back to Resturant', @resturant %>
+</div>
+
+
