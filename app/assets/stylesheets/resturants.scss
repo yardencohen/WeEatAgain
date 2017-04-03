@@ -1,3 +1,24 @@
 // Place all the styles related to the Resturants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body, body >p, body >ol, body > ul, body > td {margin: 20px !important}
+
+#google-map {
+	float: right;
+}
+
+
+#tenbis {
+	img {
+		border-radius: 8px;
+		width: 40px;
+		height: 40px;
+	}
+}
+
+#cuisine-image {
+	img {
+		width: 50px;
+	}
+}

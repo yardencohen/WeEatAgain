@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+
+body, body >p, body >ol, body > ul, body > td {margin: 10px !important}
+
+
+body {
+	background-color: #d8d0d0;
+}
+
+.business-header {
+    height: 450px;
+    background: url('header.jpeg') center center no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    h1, p {
+    	color: white;
+    	font-weight: 500;
+
+    }
+    h1 {
+    	font-size: 350%;
+    }
+    a {
+    	text-decoration: none;
+    }
+}
+
+.subtitle {
+	margin-bottom: 20px;
+	font-size: 21px;
+	font-weight: 200;
+	line-height: 1.4;
+}
+
