@@ -10,29 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330115044) do
+ActiveRecord::Schema.define(version: 20170404143532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cuisines", force: :cascade do |t|
-    t.string   "title"
-    t.string   "image"
+    t.string   "title",      null: false
+    t.string   "image",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "resturants", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "rating"
+    t.string   "name",              null: false
     t.boolean  "tenbis"
     t.text     "address"
-    t.time     "max_delivery_time"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-    t.integer  "cuisine_id"
+    t.integer  "cuisine_id",        null: false
+    t.integer  "max_delivery_time"
     t.index ["cuisine_id"], name: "index_resturants_on_cuisine_id", using: :btree
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "resturant_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "rating",       null: false
+    t.string   "reviewer",     null: false
+    t.text     "description"
+    t.index ["resturant_id"], name: "index_reviews_on_resturant_id", using: :btree
+  end
+
   add_foreign_key "resturants", "cuisines"
+  add_foreign_key "reviews", "resturants"
 end

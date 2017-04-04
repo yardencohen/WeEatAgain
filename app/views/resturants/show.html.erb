@@ -11,11 +11,6 @@
 </p>
 
 <p>
-  <strong>Rating:</strong>
-  <%= @resturant.rating %>
-</p>
-
-<p>
   <strong>Tenbis:</strong>
   <%= @resturant.tenbis %>
 </p>
@@ -27,8 +22,13 @@
 
 <p>
   <strong>Max delivery time:</strong>
-  <%= @resturant.max_delivery_time.strftime('%H:%M') unless @resturant.max_delivery_time.blank? %>
+  <% unless @resturant.max_delivery_time.blank? %>
+    <%= @resturant.max_delivery_time %> Minutes
+  <% else %>
+    Not Available
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_resturant_path(@resturant) %> |
 <%= link_to 'Back', resturants_path %>
+<%= link_to 'View Reviews', resturant_reviews_path(@resturant) %>

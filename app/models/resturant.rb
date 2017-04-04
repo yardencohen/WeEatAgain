@@ -1,8 +1,15 @@
 class Resturant < ApplicationRecord	
 	belongs_to :cuisine
-	validates :name, presence: true
-	validates :cuisine_id, presence: true
-	validates :rating, presence: true
-	validates :address, presence: true
-	validates :max_delivery_time, presence: true
+	has_many :reviews
+
+	validates_presence_of :name
+	validates_inclusion_of :max_delivery_time, :in => 0...91
+
+	def average_rating
+		if self.reviews.size > 0
+			self.reviews.average(:rating).round
+		else
+			0
+		end
+	end
 end
