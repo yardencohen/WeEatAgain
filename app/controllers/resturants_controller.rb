@@ -28,7 +28,7 @@ class ResturantsController < ApplicationController
 
     respond_to do |format|
       if @resturant.save
-        format.html { redirect_to @resturant, notice: 'Resturant was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Resturant was successfully created.' }
         format.json { render :show, status: :created, location: @resturant }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class ResturantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resturant_params
-      params.require(:resturant).permit(:name, :rating, :tenbis, :address, :max_delivery_time, :cuisine_id)
+      params.require(:resturant).permit(:name, :tenbis, :address, :max_delivery_time, :cuisine_id)
     end
 end

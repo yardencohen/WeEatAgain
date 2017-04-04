@@ -3,7 +3,6 @@
 one:
   name: MyString
   genre: MyString
-  rating: 1
   tenbis: false
   address: MyText
   max_delivery_time: 2017-03-27 13:49:00
@@ -11,7 +10,6 @@ one:
 two:
   name: MyString
   genre: MyString
-  rating: 1
   tenbis: false
   address: MyText
   max_delivery_time: 2017-03-27 13:49:00
