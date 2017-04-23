@@ -38,7 +38,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 
-gem "react_on_rails", "~> 6"
+gem 'react_on_rails', '~> 6'
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
