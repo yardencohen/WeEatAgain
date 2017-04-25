@@ -2,13 +2,15 @@ import ReactOnRails from 'react-on-rails';
 
 import HelloWorld from '../components/HelloWorld';
 
+<<<<<<< HEAD
 import Header from '../components/Header';
-
-import ResturantsList from '../components/ResturantsList';
-
-import ResturantItem from '../components/ResturantItem';
 
 // This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
-  HelloWorld, Header, ResturantsList, ResturantItem
+  HelloWorld, Header
+=======
+// This is how react_on_rails can see the HelloWorld in the browser.
+ReactOnRails.register({
+  HelloWorld,
+>>>>>>> 8a2344998f104fadd2b73a071cb97796d79aae66
 });

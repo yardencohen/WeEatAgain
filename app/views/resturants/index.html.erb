@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
+<!--<div class="container">
   <div class="row">
     <div class="col-md-6" id="filters">
       <table>
@@ -31,9 +31,22 @@
       </tr>
     </table>
   </div>
-</div>
+</div>-->
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-md-4 col-centered">
+    <ul class="list-group">
+    <% @resturants.each do |resturant| %>
+    <%= react_component("ResturantItem", props: {
+        resturant: resturant,
+        cuisine_title: resturant.cuisine.title,
+        cuisine_image: image_url(resturant.cuisine.image),
+        average_rating: resturant.average_rating,
+        tenbis_image: image_url("10bis.jpg")
+    }) %>
+        <% end %>
+    </ul>
+  </div>
+  <!--<div class="col-sm-8">
     <ul class="list-group row">
       <% @resturants.each do |resturant| %>
       <li class="list-group-item col-sm-4" id="cuisine-img">
@@ -72,8 +85,8 @@
       </li>
       <% end %>
     </ul>
-    </div>
-  <div class="col-sm-4" id="google-map">
+    </div>-->
+  <div class="col-md-4" id="google-map">
     That's where google map will be
   </div>
 </div>
@@ -82,4 +95,3 @@
     <%= link_to 'New Resturant', new_resturant_path %>
   </div>
 </div>
-</div>    
