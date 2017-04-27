@@ -5,6 +5,18 @@ class ResturantsController < ApplicationController
   # GET /resturants.json
   def index
     @resturants = Resturant.all
+    @resturantlist = @resturants.map do |resturant|
+      {
+          :id => resturant.id,
+          :name => resturant.name,
+          :max_delivery_time => resturant.max_delivery_time,
+          :tenbis => resturant.tenbis,
+          :average_rating => resturant.average_rating,
+          :cuisine_title => resturant.cuisine.title,
+          :cuisine_image => ActionController::Base.helpers.asset_path(resturant.cuisine.image)
+      }
+    end
+    @cuisine_titles = Cuisine.pluck(:title)
   end
 
   # GET /resturants/1

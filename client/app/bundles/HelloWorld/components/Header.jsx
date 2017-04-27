@@ -1,6 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-export default class HelloWorld extends React.Component {
+export default class Header extends React.Component {
+
+    static componentDidMount() {
+        console.log('header mounted');
+    }
 
     render() {
         return (
@@ -8,15 +12,14 @@ export default class HelloWorld extends React.Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-12  text-center">
-                            <br /><br /><br /><br /><br /><br />
-                                <hr />
-                                    <a href="/">
-                                        <h1 className="tagline">WeEatAgain</h1>
-                                    </a>
-                                    <hr />
-                                        <p>Is it lunchtime already?</p>
-                                        <p>Choose a place to eat out of these recommended resturants</p>
-                                        <br />
+                            <hr />
+                            <a href="/">
+                                <h1 className="tagline">WeEatAgain</h1>
+                            </a>
+                            <hr />
+                            <p>Is it lunchtime already?</p>
+                            <p>Choose a place to eat out of these recommended resturants</p>
+                            <br />
                         </div>
                     </div>
                 </div>

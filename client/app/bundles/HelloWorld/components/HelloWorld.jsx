@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class HelloWorld extends React.Component {
   static propTypes = {
@@ -17,8 +18,8 @@ export default class HelloWorld extends React.Component {
     this.state = { name: this.props.name };
   }
 
-  updateName = (name) => {
-    this.setState({ name });
+  updateName = (e) => {
+    this.setState({ name: e.target.value });
   };
 
   render() {
@@ -36,7 +37,7 @@ export default class HelloWorld extends React.Component {
             id="name"
             type="text"
             value={this.state.name}
-            onChange={(e) => this.updateName(e.target.value)}
+            onChange={this.updateName}
           />
         </form>
       </div>
