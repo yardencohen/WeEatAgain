@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html>
-<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-
-<script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
 <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= react_component("Header") %>
   <head>
+    <script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://use.fontawesome.com/d5e9f09ea5.js"></script>
   	<%= favicon_link_tag 'favicon.ico' %>
     <title>WeEatAgain</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
   <body class='<%= controller.controller_name %>'>
+    <%= react_component("Header") %>
     <%= yield %>
   </body>
 </html>

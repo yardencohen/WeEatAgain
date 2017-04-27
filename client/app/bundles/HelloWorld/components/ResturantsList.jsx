@@ -1,30 +1,29 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import ResturantItem from './ResturantItem';
 
 export default class ResturantsList extends React.Component {
-    componentDidMount(){
-        console.log("mounted");
-        console.log(this.props);
+
+    static propTypes = {
+        resturants: PropTypes.array.isRequired,
+        tenbis: PropTypes.string.isRequired
     };
 
-    constructor (props) {
-        super(props);
-        this.state = {
-            resturants: JSON.stringify(this.props.resturants)
-        };
-    }
-
     render() {
-        const resturants = this.props.resturants.map((resturant) => {
-            return (
-                <li key={resturant.id} className="list-group-item">
-                    {resturant.name}
-                </li>
-            );
-        });
-
+        let content;
+        if (this.props.resturants.length > 0) {
+            content = this.props.resturants.map((item) => {
+                return (
+                    <ResturantItem key={item.id} resturant={item} tenbis={this.props.tenbis}/>
+                );
+            });
+        }
+        else {
+            content = <p>No Results Found</p>
+        }
         return (
         <ul className="list-group">
-            {resturants}
+            {content}
         </ul>
         );
     }

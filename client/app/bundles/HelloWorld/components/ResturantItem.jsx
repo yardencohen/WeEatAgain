@@ -1,21 +1,11 @@
-import React, { PropTypes } from 'react';
-
+import React from 'react';
+import PropTypes from 'prop-types';
 export default class ResturantItem extends React.Component {
-    componentDidMount(){
-        console.log("mounted");
-        console.log(this.props);
-    };
 
-    constructor (props) {
-        super(props);
-        this.state = {
-            resturant: JSON.stringify(this.props.resturant),
-            average_rating: this.props.average_rating,
-            cuisine_image: this.props.cuisine_image,
-            cuisine_title: this.props.cuisine_title,
-            tenbis_image: this.props.tenbis_image
-        };
-    }
+    static propTypes = {
+        resturant: PropTypes.object.isRequired,
+        tenbis: PropTypes.string.isRequired
+    };
 
     reviewStars(num) {
         let stars = [];
@@ -27,30 +17,29 @@ export default class ResturantItem extends React.Component {
         );
     }
 
-    tenbis() {
-        if (this.props.resturant.tenbis) {
-            return (
-                <div className="tenbis">
-                    <img src={this.props.tenbis_image} />
-                </div>
-            )
-        }
+    tenbisIcon() {
+        return this.props.resturant.tenbis && (
+            <div className="tenbis">
+                <img src={this.props.tenbis} />
+            </div>
+            );
     }
 
     render () {
         const resturant = this.props.resturant;
-        const stars = this.reviewStars(this.props.average_rating);
-        const tenbis = this.tenbis();
         return (
             <li className="list-group-item" id={resturant.id}>
-                <div className="col-md-2">
-                    <img className="cuisine-image" src={this.props.cuisine_image} />
+                <div className="col-md-3 col-sm-4 col-xs-4">
+                    <img className="cuisine-image" src={resturant.cuisine_image} />
                 </div>
-                <div className="col-md-6">
-                    <div className="subtitle">{resturant.name}</div>
-                    <div>{this.props.cuisine_title}</div>
-                    {stars}
-                    {tenbis}
+                <div className="col-md-6 col-sm-6">
+                    <div className="subtitle">
+                        <a href={"/resturants/" + resturant.id}>{resturant.name}</a>
+                    </div>
+                    <div>{resturant.cuisine_title}</div>
+                    {this.reviewStars(resturant.average_rating)}
+                    {this.tenbisIcon()}
+                    <div>Max delivery time: {resturant.max_delivery_time} minutes</div>
 
                 </div>
             </li>

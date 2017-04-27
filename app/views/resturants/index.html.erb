@@ -1,97 +1,18 @@
 <p id="notice"><%= notice %></p>
-
-<!--<div class="container">
+<div class="container">
   <div class="row">
-    <div class="col-md-6" id="filters">
-      <table>
-      <thead>
-        <th>Accepts 10bis:</th>
-        <th>Genre:</th>
-        <th>Rating:</th>
-      </thead>
-      <tr>
-        <td>
-          <input type="checkbox" name="tenbis-filter" value="accepts-tenbis">
-        </td>
-        <td>
-          <select>
-            <% @resturants.each do |resturant| %>
-              <% title = resturant.cuisine.title %>
-              <option value=<%= title %> > <%=title %> </option> 
-            <% end %>
-          </select>
-        </td>
-        <td>
-          <select>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </td>
-      </tr>
-    </table>
+    <div class="col-sm-8 col-md-8">
+      <%= react_component("ResturantIndex", props: {cuisineTitles: @cuisine_titles,
+                                                   resturants: @resturantlist,
+                                                   tenbis: image_url("10bis.jpg")}) %>
+    </div>
+    <div class="col-sm-4 col-md-4" id="google-map">
+      That's where google map will be
+    </div>
   </div>
-</div>-->
-<div class="row">
-  <div class="col-md-4 col-centered">
-    <ul class="list-group">
-    <% @resturants.each do |resturant| %>
-    <%= react_component("ResturantItem", props: {
-        resturant: resturant,
-        cuisine_title: resturant.cuisine.title,
-        cuisine_image: image_url(resturant.cuisine.image),
-        average_rating: resturant.average_rating,
-        tenbis_image: image_url("10bis.jpg")
-    }) %>
-        <% end %>
-    </ul>
-  </div>
-  <!--<div class="col-sm-8">
-    <ul class="list-group row">
-      <% @resturants.each do |resturant| %>
-      <li class="list-group-item col-sm-4" id="cuisine-img">
-        <%= image_tag resturant.cuisine.image %>
-      </li>
-      <li class="col-sm-8" id="resturant-details">
-        <a href=<%= resturant_path(resturant)%>>
-          <div class="col-sm-12">
-            <%= resturant.name %>
-          </div>
-          <div class="col-sm-12">
-            <%= resturant.cuisine.title %>
-          </div>
-          <div class="col-sm-12">
-            Rating:
-            <% rating = resturant.average_rating %>
-            <% rating.times do %>
-              <i class="fa fa-star"></i>
-            <% end %>
-          </div>
-          <% if resturant.tenbis %>
-            <div class="col-sm-12" id="tenbis">
-              <%= image_tag "10bis.jpg" %>
-            </div>
-          <% end %>
-          <div class="col-sm-12">
-            <%= link_to 'Edit', edit_resturant_path(resturant) %>
-          </div>
-          <div class="col-sm-12">
-            <%= link_to 'Add Review', new_resturant_review_path(resturant) %>
-          </div>
-          <div class="col-sm-12">
-            <%= link_to 'View Reviews', resturant_reviews_path(resturant) %>
-          </div>
-        </a>
-      </li>
-      <% end %>
-    </ul>
-    </div>-->
-  <div class="col-md-4" id="google-map">
-    That's where google map will be
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-8" id="new-resturant">
-    <%= link_to 'New Resturant', new_resturant_path %>
+  <div class="row">
+    <div class="col-sm-6 col-md-6" id="new-resturant">
+      <%= link_to 'New Resturant', new_resturant_path %>
+    </div>
   </div>
 </div>
