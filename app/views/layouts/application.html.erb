@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <%= stylesheet_link_tag    'application', media: 'all' %>
+<%= stylesheet_link_tag 'buttons', media: 'all' %>
   <head>
     <script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
@@ -12,7 +13,7 @@
 
   </head>
   <body class='<%= controller.controller_name %>'>
-    <%= react_component("Header") %>
+    <%= react_component("Header", props: {newResturant: new_resturant_path}) %>
     <%= yield %>
   </body>
 </html>
