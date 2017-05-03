@@ -24,6 +24,12 @@ body {
 	background-color: #d8d0d0;
 }
 
+.bottomright {
+  position: absolute;
+  bottom: 8px;
+  right: 30px;
+}
+
 .business-header {
     height: 450px;
     background: url('header.jpeg') center center no-repeat scroll;

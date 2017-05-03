@@ -13,7 +13,8 @@ class ResturantsController < ApplicationController
           :tenbis => resturant.tenbis,
           :average_rating => resturant.average_rating,
           :cuisine_title => resturant.cuisine.title,
-          :cuisine_image => ActionController::Base.helpers.asset_path(resturant.cuisine.image)
+          :cuisine_image => ActionController::Base.helpers.asset_path(resturant.cuisine.image),
+          :new_review => new_resturant_review_path(resturant)
       }
     end
     @cuisine_titles = Cuisine.pluck(:title)
@@ -26,6 +27,7 @@ class ResturantsController < ApplicationController
 
   # GET /resturants/new
   def new
+    @cuisines = Cuisine.all
     @resturant = Resturant.new
   end
 

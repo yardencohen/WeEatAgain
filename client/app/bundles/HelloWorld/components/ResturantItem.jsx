@@ -42,6 +42,9 @@ export default class ResturantItem extends React.Component {
                     <div>Max delivery time: {resturant.max_delivery_time} minutes</div>
 
                 </div>
+                <div className="col-md-3 col-sm-3">
+                    <a href={this.props.resturant.new_review}>Add a review</a>
+                </div>
             </li>
         )
 

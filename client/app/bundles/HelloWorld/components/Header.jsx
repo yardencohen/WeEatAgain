@@ -2,10 +2,6 @@ import React from 'react';
 
 export default class Header extends React.Component {
 
-    static componentDidMount() {
-        console.log('header mounted');
-    }
-
     render() {
         return (
             <header className="business-header">
@@ -22,7 +18,11 @@ export default class Header extends React.Component {
                             <br />
                         </div>
                     </div>
+                    <a className="button button-circle button-giant bottomright" href={this.props.newResturant}>
+                        <i className="fa fa-plus"/>
+                    </a>
                 </div>
+
             </header>
         );
     }
