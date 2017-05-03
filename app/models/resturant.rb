@@ -1,4 +1,6 @@
-class Resturant < ApplicationRecord	
+
+
+class Resturant < ApplicationRecord
 	belongs_to :cuisine
 	has_many :reviews
 
@@ -11,5 +13,12 @@ class Resturant < ApplicationRecord
 		else
 			0
 		end
-	end
+  end
+
+  def calc_distance(user_location)
+    origin = {lat: user_location[:coords][:latitude].to_f,
+             lng: user_location[:coords][:longitude].to_f}
+    res = GoogleDistanceMatrix.new.calc_distance(origin, self.address)
+    res
+  end
 end

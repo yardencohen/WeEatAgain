@@ -7,6 +7,42 @@ export default class ResturantItem extends React.Component {
         tenbis: PropTypes.string.isRequired
     };
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            distance: 'Unknown'
+        }
+    }
+
+    
+    renderResturantDistance() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            $.ajax({
+                url: '/resturants/distance_calc',
+                dataType: 'json',
+                type: 'POST',
+                data: {id: this.props.resturant.id, user_location: position},
+                success: ((res) => {
+                    if (res["status"] == 'OK'){
+                        let distance_item = res["rows"][0]["elements"][0];
+                        if (distance_item["status"] == "OK") {
+                            this.setState({
+                                distance: distance_item["distance"]["text"]
+                            });
+                        }
+                    }
+                }),
+                error(xhr, thrownError) {
+                    console.log(xhr.status);
+                    console.log(thrownError);
+                }
+            })
+        });
+        return (
+            <div>Distance: {this.state.distance}</div>
+        );
+    }
+
     reviewStars(num) {
         let stars = [];
         for(let i= 0; i < num; i++) {
@@ -40,7 +76,7 @@ export default class ResturantItem extends React.Component {
                     {this.reviewStars(resturant.average_rating)}
                     {this.tenbisIcon()}
                     <div>Max delivery time: {resturant.max_delivery_time} minutes</div>
-
+                    {this.renderResturantDistance()}
                 </div>
                 <div className="col-md-3 col-sm-3">
                     <a href={this.props.resturant.new_review}>Add a review</a>

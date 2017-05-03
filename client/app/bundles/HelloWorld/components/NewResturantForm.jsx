@@ -7,9 +7,12 @@ export default class NewResturantForm extends React.Component {
         cuisines: PropTypes.array.isRequired
     };
 
-    componentDidMount() {
+    /*componentDidMount() {
         console.log('mounted');
-    }
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position)
+        })
+    }*/
 
     constructor(props) {
         super(props);

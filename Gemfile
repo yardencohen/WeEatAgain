@@ -45,6 +45,8 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 
 gem 'react-bootstrap-rails'
 
+gem 'google_maps_service'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

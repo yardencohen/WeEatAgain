@@ -1,5 +1,5 @@
 class ResturantsController < ApplicationController
-  before_action :set_resturant, only: [:show, :edit, :update, :destroy]
+  before_action :set_resturant, only: [:show, :edit, :update, :destroy, :distance_calc]
 
   # GET /resturants
   # GET /resturants.json
@@ -75,6 +75,11 @@ class ResturantsController < ApplicationController
     end
   end
 
+  def distance_calc
+    @distance = @resturant.calc_distance(params[:user_location])
+    render json: @distance
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_resturant
@@ -84,5 +89,9 @@ class ResturantsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def resturant_params
       params.require(:resturant).permit(:name, :tenbis, :address, :max_delivery_time, :cuisine_id)
+    end
+
+    def distance_calc_params
+      params[:user_location].permit(:lat, :lng)
     end
 end
