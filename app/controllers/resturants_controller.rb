@@ -76,7 +76,8 @@ class ResturantsController < ApplicationController
   end
 
   def distance_calc
-    @distance = @resturant.calc_distance(params[:user_location])
+    origin = {lat: distance_calc_params[:latitude], lng: distance_calc_params[:longitude]}
+    @distance = GoogleDistanceMatrix.new.calc_distance(origin, @resturant.address)
     render json: @distance
   end
 
@@ -92,6 +93,6 @@ class ResturantsController < ApplicationController
     end
 
     def distance_calc_params
-      params[:user_location].permit(:lat, :lng)
+      params[:user_location].permit(:latitude, :longitude)
     end
 end

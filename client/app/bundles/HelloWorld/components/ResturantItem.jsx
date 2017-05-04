@@ -10,18 +10,19 @@ export default class ResturantItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            distance: 'Unknown'
+            distance: 'Unknown',
+            distance_loaded: false
         }
     }
 
-    
-    renderResturantDistance() {
+    updateDistance() {
         navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position.coords);
             $.ajax({
                 url: '/resturants/distance_calc',
                 dataType: 'json',
                 type: 'POST',
-                data: {id: this.props.resturant.id, user_location: position},
+                data: {id: this.props.resturant.id, user_location: position.coords},
                 success: ((res) => {
                     if (res["status"] == 'OK'){
                         let distance_item = res["rows"][0]["elements"][0];
@@ -38,6 +39,16 @@ export default class ResturantItem extends React.Component {
                 }
             })
         });
+        this.setState({
+            distance_loaded: true
+        });
+    }
+
+
+    renderResturantDistance() {
+        if (!this.state.distance_loaded) {
+            this.updateDistance();
+        }
         return (
             <div>Distance: {this.state.distance}</div>
         );
