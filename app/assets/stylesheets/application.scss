@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require tether
  */
 
 @import "bootstrap";
@@ -21,6 +22,12 @@ body, body >p, body >ol, body > ul, body > td {margin: 10px !important}
 
 body {
 	background-color: #d8d0d0;
+}
+
+.bottomright {
+  position: absolute;
+  bottom: 8px;
+  right: 30px;
 }
 
 .business-header {

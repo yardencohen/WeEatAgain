@@ -1,10 +1,23 @@
 class ResturantsController < ApplicationController
-  before_action :set_resturant, only: [:show, :edit, :update, :destroy]
+  before_action :set_resturant, only: [:show, :edit, :update, :destroy, :distance_calc]
 
   # GET /resturants
   # GET /resturants.json
   def index
     @resturants = Resturant.all
+    @resturantlist = @resturants.map do |resturant|
+      {
+          :id => resturant.id,
+          :name => resturant.name,
+          :max_delivery_time => resturant.max_delivery_time,
+          :tenbis => resturant.tenbis,
+          :average_rating => resturant.average_rating,
+          :cuisine_title => resturant.cuisine.title,
+          :cuisine_image => ActionController::Base.helpers.asset_path(resturant.cuisine.image),
+          :new_review => new_resturant_review_path(resturant)
+      }
+    end
+    @cuisine_titles = Cuisine.pluck(:title)
   end
 
   # GET /resturants/1
@@ -14,6 +27,7 @@ class ResturantsController < ApplicationController
 
   # GET /resturants/new
   def new
+    @cuisines = Cuisine.all
     @resturant = Resturant.new
   end
 
@@ -28,7 +42,7 @@ class ResturantsController < ApplicationController
 
     respond_to do |format|
       if @resturant.save
-        format.html { redirect_to @resturant, notice: 'Resturant was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Resturant was successfully created.' }
         format.json { render :show, status: :created, location: @resturant }
       else
         format.html { render :new }
@@ -61,14 +75,27 @@ class ResturantsController < ApplicationController
     end
   end
 
+  def distance_calc
+    origin = {lat: distance_calc_params[:latitude], lng: distance_calc_params[:longitude]}
+    gdm = GoogleDistanceMatrix.new
+    distance = gdm.calc_distance(origin, @resturant.address)
+    render json: distance
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_resturant
       @resturant = Resturant.find(params[:id])
     end
 
+  private
     # Never trust parameters from the scary internet, only allow the white list through.
     def resturant_params
-      params.require(:resturant).permit(:name, :rating, :tenbis, :address, :max_delivery_time, :cuisine_id)
+      params.require(:resturant).permit(:name, :tenbis, :address, :max_delivery_time, :cuisine_id)
+    end
+
+  private
+    def distance_calc_params
+      params[:user_location].require(:latitude, :longitude)
     end
 end

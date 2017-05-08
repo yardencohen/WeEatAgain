@@ -9,7 +9,7 @@ body, body >p, body >ol, body > ul, body > td {margin: 20px !important}
 }
 
 
-#tenbis {
+.tenbis {
 	img {
 		border-radius: 8px;
 		width: 40px;
@@ -17,7 +17,16 @@ body, body >p, body >ol, body > ul, body > td {margin: 20px !important}
 	}
 }
 
-#cuisine-image {
+.resturant-item {
+  text-decoration: none;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.cuisine-image {
 	img {
 		width: 50px;
 	}

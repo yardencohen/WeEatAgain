@@ -22,11 +22,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :rating %>
-    <%= f.number_field :rating, in:1...4 %>
-  </div>
-
-  <div class="field">
     <%= f.label :tenbis %>
     <%= f.check_box :tenbis %>
   </div>
@@ -38,7 +33,7 @@
 
   <div class="field">
     <%= f.label :max_delivery_time %>
-    <%= f.time_select :max_delivery_time %>
+    <%= f.number_field :max_delivery_time, in:30...91, step:10 %>
   </div>
 
   <div class="actions">
