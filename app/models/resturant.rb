@@ -1,5 +1,3 @@
-
-
 class Resturant < ApplicationRecord
 	belongs_to :cuisine
 	has_many :reviews
@@ -8,10 +6,6 @@ class Resturant < ApplicationRecord
 	validates_inclusion_of :max_delivery_time, :in => 0...91
 
 	def average_rating
-		if self.reviews.size > 0
-			self.reviews.average(:rating).round
-		else
-			0
-		end
+		self.reviews.size > 0? self.reviews.average(:rating).round : 0
   end
 end

@@ -77,8 +77,9 @@ class ResturantsController < ApplicationController
 
   def distance_calc
     origin = {lat: distance_calc_params[:latitude], lng: distance_calc_params[:longitude]}
-    @distance = GoogleDistanceMatrix.new.calc_distance(origin, @resturant.address)
-    render json: @distance
+    gdm = GoogleDistanceMatrix.new
+    distance = gdm.calc_distance(origin, @resturant.address)
+    render json: distance
   end
 
   private
@@ -87,12 +88,14 @@ class ResturantsController < ApplicationController
       @resturant = Resturant.find(params[:id])
     end
 
+  private
     # Never trust parameters from the scary internet, only allow the white list through.
     def resturant_params
       params.require(:resturant).permit(:name, :tenbis, :address, :max_delivery_time, :cuisine_id)
     end
 
+  private
     def distance_calc_params
-      params[:user_location].permit(:latitude, :longitude)
+      params[:user_location].require(:latitude, :longitude)
     end
 end

@@ -9,7 +9,7 @@ export default class ResturantIndex extends React.Component {
         resturants: PropTypes.array.isRequired,
         cuisineTitles: PropTypes.array.isRequired,
         tenbis: PropTypes.string.isRequired,
-        newResturant: PropTypes.string.isRequired
+        newResturantPath: PropTypes.string.isRequired
     };
 
     constructor (props) {
@@ -67,7 +67,7 @@ export default class ResturantIndex extends React.Component {
                          updateRatingFilter={this.handleRatingFilterUpdate}
                 />
                 <ResturantsList resturants={this.state.currentResturants} tenbis={this.props.tenbis} />
-                <a href={this.props.newResturant}>New Resturant</a>
+                <a href={this.props.newResturantPath}>New Resturant</a>
             </div>
         )
     }

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_filter :load_resturant
+  before_action :set_resturant
 
   # GET /reviews
   # GET /reviews.json
@@ -73,7 +73,7 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
     end
 
-    def load_resturant
+    def set_resturant
       @resturant = Resturant.find(params[:resturant_id])
     end
 
